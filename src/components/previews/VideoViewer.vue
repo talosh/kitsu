@@ -133,7 +133,7 @@ export default {
     }, 0)
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.pause()
     window.removeEventListener('keydown', this.onKeyDown)
     window.removeEventListener('resize', this.onWindowResize)

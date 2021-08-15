@@ -183,7 +183,7 @@
           :href="currentPreviewDlPath"
           v-if="extension && extension.length > 0"
         >
-          <download-icon class="icon" />
+          <icon name="download" class="icon" />
           <span class="text">
             {{ $t('tasks.download_pdf_file', {extension: extension}) }}
           </span>
@@ -803,13 +803,13 @@
 import moment from 'moment-timezone'
 import { mapActions, mapGetters } from 'vuex'
 import { fabric } from 'fabric'
-import { ArrowUpRightIcon, DownloadIcon } from 'vue-feather-icons'
 
 import { formatFrame, formatTime, roundToFrame, floorToFrame } from '@/lib/video'
 import ButtonSimple from '@/components/widgets/ButtonSimple'
 import ColorPicker from '@/components/widgets/ColorPicker'
 import Combobox from '@/components/widgets/Combobox'
 import DeleteModal from '@/components/modals/DeleteModal'
+import Icon from '@/components/widgets/Icon'
 import ObjectViewer from '@/components/previews/ObjectViewer'
 import PencilPicker from '@/components/widgets/PencilPicker'
 import PeopleAvatar from '@/components/widgets/PeopleAvatar'
@@ -830,12 +830,12 @@ export default {
   mixins: [annotationMixin, domMixin],
 
   components: {
-    ArrowUpRightIcon,
+    AnnotationBar,
     ButtonSimple,
     ColorPicker,
     Combobox,
-    DownloadIcon,
     DeleteModal,
+    Icon,
     ObjectViewer,
     PencilPicker,
     PeopleAvatar,
@@ -969,7 +969,7 @@ export default {
     })
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.endAnnotationSaving()
     this.removeEvents()
     this.leaveRoom()

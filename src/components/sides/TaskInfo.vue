@@ -361,7 +361,7 @@ export default {
     }
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.$refs['add-comment']) {
       const lastComment = `${this.$refs['add-comment'].text}`
       this.$store.commit('SET_LAST_COMMENT_DRAFT', lastComment)

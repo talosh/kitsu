@@ -303,7 +303,7 @@
           target="blank"
           v-if="!readOnly && isPicture"
         >
-          <arrow-up-right-icon class="icon is-small" />
+          <icon name="arrow-up-right" class="icon is-small" />
         </a>
 
         <div
@@ -365,7 +365,7 @@
           :href="originalDlPath"
           :title="$t('playlists.actions.download_file')"
         >
-          <download-icon class="icon is-small" />
+          <icon name="download" class="icon is-small" />
         </a>
 
         <button-simple
@@ -416,14 +416,12 @@ import { annotationMixin } from '@/components/mixins/annotation'
 import { fullScreenMixin } from '@/components/mixins/fullscreen'
 import { domMixin } from '@/components/mixins/dom'
 
-import {
-  ArrowUpRightIcon,
-  DownloadIcon
-} from 'vue-feather-icons'
+import AnnotationBar from '@/components/pages/playlists/AnnotationBar'
 import ButtonSimple from '@/components/widgets/ButtonSimple'
 import BrowsingBar from '@/components/previews/BrowsingBar'
 import ColorPicker from '@/components/widgets/ColorPicker'
 import Combobox from '@/components/widgets/Combobox'
+import Icon from '@/components/widgets/Icon'
 import PencilPicker from '@/components/widgets/PencilPicker'
 import PreviewViewer from '@/components/previews/PreviewViewer'
 import RevisionPreview from '@/components/previews/RevisionPreview'
@@ -435,17 +433,16 @@ export default {
   mixins: [annotationMixin, domMixin, fullScreenMixin],
 
   components: {
-    ArrowUpRightIcon,
-    VideoProgress,
     ButtonSimple,
     BrowsingBar,
     ColorPicker,
     Combobox,
-    DownloadIcon,
+    Icon,
     PencilPicker,
     PreviewViewer,
     RevisionPreview,
-    TaskInfo
+    TaskInfo,
+    VideoProgress,
   },
 
   props: {
@@ -537,7 +534,7 @@ export default {
     }
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.endAnnotationSaving()
     this.removeEvents()
   },

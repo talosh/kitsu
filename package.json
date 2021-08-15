@@ -14,7 +14,11 @@
     "test:functional": "$(npm bin)/cypress open"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@google/model-viewer": "^1.9.2",
+=======
+    "@vue/babel-preset-app": "^4.5.13",
+>>>>>>> [vue3] Refactor icons
     "@vue/compat": "^3.2.0",
     "async": "3.2.0",
     "bowser": "2.11.0",
@@ -28,6 +32,7 @@
     "eslint-plugin-standard": "5.0.0",
     "esm": "3.2.25",
     "fabric": "4.5.1",
+    "feather-icons": "^4.28.0",
     "js-3d-model-viewer": "0.1.6",
     "marked": "2.1.3",
     "moment": "2.29.1",
@@ -50,21 +55,22 @@
     "vue-color": "2.8.1",
     "vue-cookie": "1.1.4",
     "vue-drag-drop": "1.1.4",
+    "vue-feather": "^2.0.0-rc",
     "vue-feather-icons": "5.1.0",
-    "vue-i18n": "8.25.0",
+    "vue-i18n": "^9.0.0",
     "vue-infinite-scroll": "2.0.2",
     "vue-lazyload": "1.3.3",
     "vue-meta": "2.4.0",
     "vue-pdf": "4.3.0",
-    "vue-router": "3.5.2",
+    "vue-router": "^4.0.0",
     "vue-scroll": "2.1.13",
     "vue-slider-component": "3.2.14",
     "vue-textarea-autosize": "1.1.1",
     "vue-websocket-next": "0.2.5",
     "vuedraggable": "2.24.3",
     "vuejs-datepicker": "1.6.2",
-    "vuex": "3.6.2",
-    "vuex-router-sync": "5.0.0",
+    "vuex": "^4.0.0",
+    "vuex-router-sync": "6.0.0-rc.1",
     "wavesurfer.js": "5.2.0"
   },
   "devDependencies": {
@@ -85,10 +91,13 @@
     "eslint-plugin-jest": "24.4.0",
     "eslint-plugin-vue": "7.15.1",
     "localStorage": "1.0.4",
-    "ncu": "0.2.1",
     "vue-loader": "16.5.0",
+<<<<<<< HEAD
     "vue-template-compiler": "2.6.14",
     "webpack": "4.46.0"
+=======
+    "webpack": "^4.6.0"
+>>>>>>> [vue3] Refactor icons
   },
   "babel": {},
   "engines": {

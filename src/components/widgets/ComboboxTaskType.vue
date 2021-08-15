@@ -21,7 +21,7 @@
           v-if="currentTaskType"
         />
       </div>
-      <chevron-down-icon class="ml05 down-icon flexrow-item"/>
+      <icon name="chevron-down" class="ml05 down-icon flexrow-item" />
     </div>
     <div
       :class="{
@@ -52,8 +52,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { ChevronDownIcon } from 'vue-feather-icons'
 
+import Icon from '@/components/widgets/Icon'
 import ComboboxMask from '@/components/widgets/ComboboxMask'
 import TaskTypeName from '@/components/widgets/TaskTypeName'
 
@@ -61,7 +61,7 @@ export default {
   name: 'combobox-task-type',
 
   components: {
-    ChevronDownIcon,
+    Icon,
     ComboboxMask,
     TaskTypeName
   },
