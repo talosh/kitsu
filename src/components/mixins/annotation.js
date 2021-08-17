@@ -45,7 +45,7 @@ export const annotationMixin = {
   mounted () {
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
   },
 
   computed: {

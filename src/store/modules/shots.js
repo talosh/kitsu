@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import moment from 'moment'
 import peopleApi from '../api/people'
 import shotsApi from '../api/shots'
@@ -1679,7 +1678,7 @@ const mutations = {
       shot.tasks.push(task)
       if (!shot.validations) shot.validations = new Map()
       shot.validations.set(task.task_type_id, task.id)
-      Vue.set(shot, 'validations', new Map(shot.validations))
+      shot.validations = new Map(shot.validations)
     }
   },
 
@@ -1691,7 +1690,7 @@ const mutations = {
       const validations = new Map(shot.validations)
       validations.delete(task.task_type_id)
       delete shot.validations
-      Vue.set(shot, 'validations', validations)
+      shot.validations = validations
 
       const taskIndex = shot.tasks.findIndex(
         (shotTaskId) => shotTaskId === task.id
