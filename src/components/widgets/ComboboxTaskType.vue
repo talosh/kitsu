@@ -81,7 +81,7 @@ export default {
       default: () => [],
       type: Array
     },
-    value: {
+    modelValue: {
       default: '',
       type: String
     },
@@ -104,8 +104,8 @@ export default {
     ]),
 
     currentTaskType () {
-      if (this.value) {
-        return this.taskTypeMap.get(this.value)
+      if (this.modelValue) {
+        return this.taskTypeMap.get(this.modelValue)
       } else if (this.addPlaceholder) {
         return { name: '+ Task Type', color: '#E5E5E5', id: '' }
       } else {
@@ -116,7 +116,7 @@ export default {
 
   methods: {
     selectTaskType (taskType) {
-      this.$emit('input', taskType.id)
+      this.$emit('update:modelValue', taskType.id)
       this.showTaskTypeList = false
     },
 
