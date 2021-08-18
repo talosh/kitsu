@@ -360,13 +360,16 @@ export default {
     }
   },
 
+  created () {
+    this.silent = true
+  },
+
   mounted () {
     if (this.comment.checklist) {
-      this.$options.silent = true
       this.checklist = [...this.comment.checklist]
       this.$nextTick()
         .then(() => {
-          this.$options.silent = false
+          this.silent = false
         })
     }
     Array.from(
@@ -658,16 +661,16 @@ export default {
 
   watch: {
     'comment.checklist' () {
-      this.$options.silent = true
+      this.silent = true
       this.checklist = [...this.comment.checklist]
       this.$nextTick()
         .then(() => {
-          this.$options.silent = false
+          this.silent = false
         })
     },
 
     checklist () {
-      if (!this.$options.silent) {
+      if (!this.silent) {
         this.emitChangeEvent()
       }
     }

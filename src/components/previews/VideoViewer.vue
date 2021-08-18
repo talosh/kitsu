@@ -97,10 +97,13 @@ export default {
     }
   },
 
+  created () {
+    this.running = false
+    this.currentTimeCalls = []
+  },
+
   mounted () {
     if (!this.container) return
-    this.$options.currentTimeCalls = []
-
     this.container.style.height = this.defaultHeight + 'px'
     this.isLoading = true
     if (this.isMuted) {
@@ -240,9 +243,9 @@ export default {
     },
 
     getLastPushedCurrentTime () {
-      const length = this.$options.currentTimeCalls.length
+      const length = this.currentTimeCalls.length
       if (length > 0) {
-        return this.$options.currentTimeCalls[length - 1]
+        return this.currentTimeCalls[length - 1]
       } else {
         return this.currentTimeRaw
       }
@@ -258,19 +261,19 @@ export default {
     },
 
     setCurrentTime (currentTime) {
-      if (!this.$options.currentTimeCalls) {
-        this.$options.currentTimeCalls = []
+      if (!this.currentTimeCalls) {
+        this.currentTimeCalls = []
       }
-      this.$options.currentTimeCalls.push(currentTime)
-      if (!this.$options.running) this.runSetCurrentTime()
+      this.currentTimeCalls.push(currentTime)
+      if (!this.running) this.runSetCurrentTime()
     },
 
     runSetCurrentTime () {
-      if (this.$options.currentTimeCalls.length === 0) {
-        this.$options.running = false
+      if (this.currentTimeCalls.length === 0) {
+        this.running = false
       } else {
-        this.$options.running = true
-        const currentTime = this.$options.currentTimeCalls.shift()
+        this.running = true
+        const currentTime = this.currentTimeCalls.shift()
         if (this.video.currentTime !== currentTime + this.frameDuration) {
           // tweaks needed because the html video player is messy with frames
           this.video.currentTime = currentTime + this.frameDuration + 0.01
@@ -344,8 +347,8 @@ export default {
     },
 
     runEmitTimeUpdateLoop () {
-      clearInterval(this.$options.playLoop)
-      this.$options.playLoop = setInterval(
+      clearInterval(this.playLoop)
+      this.playLoop = setInterval(
         this.onTimeUpdate,
         1000 / this.fps
       )
@@ -362,7 +365,7 @@ export default {
     pause () {
       this.video.pause()
       this._setRoundedTime(this.currentTimeRaw)
-      clearInterval(this.$options.playLoop)
+      clearInterval(this.playLoop)
     },
 
     toggleMute () {
@@ -383,7 +386,7 @@ export default {
 
     onVideoEnd () {
       this.isPlaying = false
-      clearInterval(this.$options.playLoop)
+      clearInterval(this.playLoop)
       if (this.isRepeating) {
         this.$emit('video-end')
         this.video.currentTime = 0

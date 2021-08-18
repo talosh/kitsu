@@ -389,8 +389,11 @@ export default {
     }
   },
 
+  created () {
+    this.silent = true
+  },
+
   mounted () {
-    this.$options.silent = true
     this.previewMode =
       localStorage.getItem('news:preview-mode') || 'comments'
     this.taskTypeId = localStorage.getItem('news:task-type-id') || ''
@@ -403,7 +406,7 @@ export default {
     }
     this.before = null
     this.after = null
-    this.$options.silent = false
+    this.silent = false
     window.addEventListener('keydown', this.onKeyDown, false)
 
     if (
@@ -619,7 +622,7 @@ export default {
     },
 
     init () {
-      if (!this.$options.silent) {
+      if (!this.silent) {
         this.currentPage = 1
         this.loading.news = true
         this.errors.news = false

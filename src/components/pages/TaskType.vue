@@ -290,6 +290,8 @@ export default {
   },
 
   created () {
+    this.taskIndex = {}
+    this.savingBuffer = {}
     if (!this.currentProduction) {
       this.setProduction(this.$route.params.production_id)
     } else {
@@ -612,10 +614,10 @@ export default {
           descFilters.length > 0
         ) {
           let tasks = []
-          const filters = getTaskFilters(this.$options.taskIndex, query)
+          const filters = getTaskFilters(this.taskIndex, query)
             .concat(descFilters)
           if (keywords.length > 0) {
-            tasks = indexSearch(this.$options.taskIndex, keywords)
+            tasks = indexSearch(this.taskIndex, keywords)
           } else {
             this.resetTasks()
             tasks = this.tasks
@@ -674,11 +676,11 @@ export default {
     },
 
     resetTaskIndex () {
-      this.$options.taskIndex = buildSupervisorTaskIndex(
+      this.taskIndex = buildSupervisorTaskIndex(
         this.tasks, this.personMap, this.taskStatusMap
       )
-      this.$options.taskIndex.me =
-        indexSearch(this.$options.taskIndex, this.user.full_name.split(' '))
+      this.taskIndex.me =
+        indexSearch(this.taskIndex, this.user.full_name.split(' '))
     },
 
     getTasks (entities) {
@@ -925,9 +927,9 @@ export default {
     },
 
     saveTaskScheduleItem (item) {
-      if (!this.$options.savingBuffer) this.$options.savingBuffer = {}
-      if (!this.$options.savingBuffer[item.id]) {
-        this.$options.savingBuffer[item.id] = item
+      if (!this.savingBuffer) this.savingBuffer = {}
+      if (!this.savingBuffer[item.id]) {
+        this.savingBuffer[item.id] = item
         setTimeout(() => {
           if (item.estimation) {
             item.endDate = addBusinessDays(
@@ -935,7 +937,7 @@ export default {
               Math.ceil(minutesToDays(this.organisation, item.estimation))
             )
           }
-          item = { ...this.$options.savingBuffer[item.id] }
+          item = { ...this.savingBuffer[item.id] }
           if (item.startDate && item.endDate) {
             item.parentElement.startDate = this.getMinDate(item.parentElement)
             item.parentElement.endDate = this.getMaxDate(item.parentElement)
@@ -947,10 +949,10 @@ export default {
               }
             })
           }
-          this.$options.savingBuffer[item.id] = undefined
+          this.savingBuffer[item.id] = undefined
         }, 1000)
       } else {
-        this.$options.savingBuffer[item.id] = item
+        this.savingBuffer[item.id] = item
       }
     },
 

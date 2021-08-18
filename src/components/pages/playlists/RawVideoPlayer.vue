@@ -77,13 +77,18 @@ export default {
     }
   },
 
+  created () {
+    this.currentTimeCalls = []
+    this.rate = 1
+    this.running = false
+  },
+
   // Video need to be resized after each window size change. It's due
   // to a HTML5 limitation related to video height.
   mounted () {
     this.resetHeight()
     this.player1.addEventListener('loadedmetadata', this.emitLoadedEvent)
     window.addEventListener('resize', this.resetHeight)
-    this.$options.currentTimeCalls = []
   },
 
   beforeUnmount () {
@@ -267,7 +272,7 @@ export default {
           'loadedmetadata',
           this.updateMaxDuration
         )
-        const rate = this.$options.rate || 1
+        const rate = this.rate || 1
 
         this.currentPlayer.src = this.getMoviePath(entity)
         this.nextPlayer.src = this.getMoviePath(nextEntity)
@@ -289,7 +294,7 @@ export default {
         this.currentPlayer.curentTime = roundToFrame(
           this.currentPlayer.currentTime, this.fps
         )
-        clearInterval(this.$options.playLoop)
+        clearInterval(this.playLoop)
       }
       this.isPlaying = false
     },
@@ -310,8 +315,8 @@ export default {
     },
 
     runEmitTimeUpdateLoop () {
-      clearInterval(this.$options.playLoop)
-      this.$options.playLoop = setInterval(() => {
+      clearInterval(this.playLoop)
+      this.playLoop = setInterval(() => {
         this.updateTime(this.currentPlayer.currentTime)
       }, 1000 / this.fps)
     },
@@ -347,9 +352,9 @@ export default {
     },
 
     getLastPushedCurrentTime () {
-      const length = this.$options.currentTimeCalls.length
+      const length = this.currentTimeCalls.length
       if (length > 0) {
-        return this.$options.currentTimeCalls[length - 1]
+        return this.currentTimeCalls[length - 1]
       } else {
         return this.getCurrentTime()
       }
@@ -370,8 +375,8 @@ export default {
     },
 
     _setCurrentTime (newTime) {
-      if (!this.$options.currentTimeCalls) {
-        this.$options.currentTimeCalls = []
+      if (!this.currentTimeCalls) {
+        this.currentTimeCalls = []
       }
       if (!this.currentPlayer) {
         newTime = 0
@@ -383,17 +388,17 @@ export default {
           newTime = duration
         }
       }
-      this.$options.currentTimeCalls.push(newTime)
-      if (!this.$options.running) this.runSetCurrentTime()
+      this.currentTimeCalls.push(newTime)
+      if (!this.running) this.runSetCurrentTime()
       return newTime
     },
 
     runSetCurrentTime () {
-      if (this.$options.currentTimeCalls.length === 0) {
-        this.$options.running = false
+      if (this.currentTimeCalls.length === 0) {
+        this.running = false
       } else {
-        this.$options.running = true
-        const currentTime = this.$options.currentTimeCalls.shift()
+        this.running = true
+        const currentTime = this.currentTimeCalls.shift()
         if (this.currentPlayer &&
             this.currentPlayer.currentTime !== currentTime) {
           if (this.currentPlayer) {
@@ -416,7 +421,7 @@ export default {
         this.nextPlayer.src = this.getMoviePath(nextEntity)
       }
       this.resetHeight()
-      const rate = this.$options.rate || 1
+      const rate = this.rate || 1
       this.setSpeed(rate)
     },
 
@@ -432,7 +437,7 @@ export default {
     },
 
     setSpeed (rate) {
-      this.$options.rate = rate
+      this.rate = rate
       if (this.currentPlayer) this.currentPlayer.playbackRate = rate
       if (this.nextPlayer) this.nextPlayer.playbackRate = rate
     }
