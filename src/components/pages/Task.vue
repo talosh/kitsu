@@ -141,7 +141,7 @@
                 @click="setPreview"
                 v-if="isPreviews && isCurrentUserManager"
               >
-                <icon name="icon" class="icon" />
+                <icon name="image" class="icon" />
                 <span class="text">
                   {{ $t('tasks.set_preview') }}
                 </span>
