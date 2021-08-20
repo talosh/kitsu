@@ -191,7 +191,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { en, fr } from 'vuejs-datepicker/dist/locale'
 import firstBy from 'thenby'
 import moment from 'moment'
 import { searchMixin } from '@/components/mixins/search'
@@ -342,14 +341,6 @@ export default {
 
     entityMap () {
       return this.isAssets ? this.assetMap : this.shotMap
-    },
-
-    locale () {
-      if (this.user.locale === 'fr_FR') {
-        return fr
-      } else {
-        return en
-      }
     },
 
     startDisabledDates () {
