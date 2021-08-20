@@ -1035,9 +1035,41 @@ span.input-separator {
 }
 
 .task-type.task-type-name {
+:deep(.input.is-small) {
+  height: 2rem;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+:deep(.input.is-size-2) {
+  width: 3rem;
+}
+
+:deep(.input.is-size-3) {
+  width: 3.5rem;
+}
+
+:deep(.input.is-size-4) {
+  width: 5rem;
+}
+
+:deep(.task-type.task-type-name:hover) {
+  cursor: grab;
+}
+:deep(.task-type.task-type-name) {
   margin-right: 5px;
   margin-bottom: 5px;
   height: 2.3rem;
+}
+
+:deep(.task-type-combo) {
+  display: inline-flex;
+  width: auto;
+  min-width: auto;
+}
+:deep(.selected-task-type-line) {
+  padding: 0;
+  margin-right: 0;
 }
 
 .inline-task-type-combo {
@@ -1046,6 +1078,7 @@ span.input-separator {
   min-width: auto;
   border: 0;
 }
+
 
 .import-content {
   display: flex;
