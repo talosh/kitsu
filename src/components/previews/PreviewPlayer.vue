@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <task-info
+      <!--task-info
         name="task-info"
         ref="task-info-player"
         :class="{
@@ -71,7 +71,7 @@
         :current-parent-preview="currentPreview"
         @comment-added="$emit('comment-added')"
         @time-code-clicked="timeCodeClicked"
-      />
+      /-->
     </div>
 
   </div>
@@ -426,7 +426,7 @@ import PencilPicker from '@/components/widgets/PencilPicker'
 import PreviewViewer from '@/components/previews/PreviewViewer'
 import RevisionPreview from '@/components/previews/RevisionPreview'
 import VideoProgress from '@/components/previews/VideoProgress'
-const TaskInfo = () => import('@/components/sides/TaskInfo')
+// const TaskInfo = () => import('@/components/sides/TaskInfo')
 
 export default {
   name: 'preview-player',
@@ -441,7 +441,7 @@ export default {
     PencilPicker,
     PreviewViewer,
     RevisionPreview,
-    TaskInfo,
+    // TaskInfo,
     VideoProgress,
   },
 
@@ -813,6 +813,7 @@ export default {
     },
 
     getCurrentTime () {
+      if (!this.previewView) return 0
       const currentTimeRaw = this.previewViewer.getCurrentTimeRaw()
       return roundToFrame(currentTimeRaw, this.fps) || 0
     },
@@ -1010,8 +1011,10 @@ export default {
         this.fullScreen = false
         this.endAnnotationSaving()
         this.$nextTick(() => {
-          this.previewViewer.resetVideo()
-          this.previewViewer.resetPicture()
+          if (this.previewViewer) {
+            this.previewViewer.resetVideo()
+            this.previewViewer.resetPicture()
+          }
           this.fixCanvasSize(this.getCurrentPreviewDimensions())
           this.reloadAnnotations()
           this.loadAnnotation()
@@ -1145,7 +1148,7 @@ export default {
 
     saveAnnotations () {
       let currentTime = 0
-      if (this.isMovie) {
+      if (this.isMovie && this.previewViewer) {
         const currentTimeRaw = this.previewViewer.getCurrentTimeRaw()
         currentTime = roundToFrame(currentTimeRaw, this.fps) || 0
       }
@@ -1308,8 +1311,10 @@ export default {
           this.$refs['task-info-player'].focusCommentTextarea()
         }
         // this.resetHeight()
-        this.previewViewer.resetVideo()
-        this.previewViewer.resetPicture()
+        if (this.previewViewer) {
+          this.previewViewer.resetVideo()
+          this.previewViewer.resetPicture()
+        }
         this.fixCanvasSize(this.getCurrentPreviewDimensions())
         this.endAnnotationSaving()
         this.$nextTick(() => {
@@ -1389,7 +1394,9 @@ export default {
       if (this.isPicture && this.loupe) {
         const width = this.canvasWrapper.style.width
         const height = this.canvasWrapper.style.height
-        this.previewViewer.updateLoupePosition(event, { width, height })
+        if (this.previewViewer) {
+          this.previewViewer.updateLoupePosition(event, { width, height })
+        }
       } else if (this.isMovie && this.scrubbing) {
         const x = event.e.clientX
         if (x - this.scrubStartX < 0) {
@@ -1434,6 +1441,34 @@ export default {
         this.syncComparisonViewer()
         setTimeout(this.syncComparisonViewer(), this.frameDuration)
       }
+    },
+
+    onProgressClicked (e) {
+      let left = this.progress.offsetLeft
+      if (left === 0 && !this.fullScreen) {
+        left = this.progress.parentElement.offsetParent.offsetLeft
+      }
+      const pos = (e.pageX - left) / this.progress.offsetWidth
+      const currentTime = roundToFrame(pos * this.videoDuration, this.fps)
+      this.clearCanvas()
+      this.setCurrentTime(currentTime)
+    },
+
+    setCurrentTime (time) {
+      const currentTime = roundToFrame(this.currentTimeRaw, this.fps)
+      if (time !== currentTime) {
+        if (this.comparisonViewer) this.comparisonViewer.setCurrentTimeRaw(time)
+        if (this.previewViewer) this.previewViewer.setCurrentTime(time)
+      }
+    },
+
+    updateProgressBar (currentTime) {
+      if (!this.progress.getAttribute('max')) {
+        this.progress.setAttribute(
+          'max', this.videoDuration - this.frameFactor
+        )
+      }
+      this.progress.value = currentTime
     },
 
     // Revision previews
@@ -1532,7 +1567,7 @@ export default {
 
     extraWide () {
       this.endAnnotationSaving()
-      this.previewViewer.resize()
+      if (this.previewViewer) this.previewViewer.resize()
       this.$nextTick(() => {
         this.fixCanvasSize(this.getCurrentPreviewDimensions())
       })
@@ -1546,8 +1581,10 @@ export default {
     isOrdering () {
       this.$nextTick(() => {
         this.fixCanvasSize(this.getCurrentPreviewDimensions())
-        this.previewViewer.resetVideo()
-        this.previewViewer.resetPicture()
+        if (this.previewViewer) {
+          this.previewViewer.resetVideo()
+          this.previewViewer.resetPicture()
+        }
       })
     },
 
