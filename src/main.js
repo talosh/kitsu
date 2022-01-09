@@ -1,17 +1,17 @@
 import { createApp } from 'vue'
 import { sync } from 'vuex-router-sync'
 
-import Autocomplete from 'v-autocomplete'
+// import Autocomplete from 'v-autocomplete'
 // import Chartkick from 'vue-chartkick'
 // import 'chartkick/chart.js'
 import DragDrop from 'vue-drag-drop'
 import Lazyload from 'vue3-lazyload'
-import Meta from 'vue-meta/dist/vue-meta.esm-bundler.js'
+// import Meta from 'vue-meta/dist/vue-meta.esm-bundler.js'
 import TextareaAutosize from 'vue-textarea-autosize'
 import VueFeather from 'vue-feather'
 import VueWebsocket from 'vue-websocket-next'
 import IO from 'socket.io-client'
-import 'v-autocomplete/dist/v-autocomplete.css'
+// import 'v-autocomplete/dist/v-autocomplete.css'
 
 import App from './App'
 import i18n from './lib/i18n'
@@ -26,8 +26,8 @@ app.use(i18n)
 app.use(router)
 app.use(store)
 app.use(VueWebsocket, IO, '/events')
-app.use(Autocomplete)
-app.use(Meta)
+// app.use(Autocomplete)
+// app.use(Meta)
 app.use(resizableColumn)
 // app.use(Chartkick)
 app.use(Lazyload)

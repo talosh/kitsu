@@ -64,7 +64,6 @@ import { remove } from '@/lib/models'
 import Checklist from '@/components/widgets/Checklist'
 import ComboBoxStatus from '@/components/widgets/ComboboxStatus.vue'
 import ModalFooter from '@/components/modals/ModalFooter'
-import PeopleAvatar from '@/components/widgets/PeopleAvatar'
 
 export default {
   name: 'edit-comment-modal',

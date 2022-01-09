@@ -1,5 +1,7 @@
 <template>
-  <v-autocomplete
+<div>
+</div>
+  <!--v-autocomplete
     :items="items"
     :get-label="getAssignationLabel"
     :component-item="assignationItem"
@@ -13,7 +15,7 @@
     @update-items="update"
     @input="onChange"
     v-model="item"
-  />
+  /-->
 </template>
 
 <script>
@@ -41,6 +43,7 @@ export default {
 
   mounted () {
     this.items = this.people
+    /*
     this.$refs.autocomplete.$el.children[0].children[0].addEventListener(
       'keyup', (event) => {
         if (event.keyCode === 13 && this.item) {
@@ -53,6 +56,7 @@ export default {
           this.items = []
         }
       })
+    */
   },
 
   props: {

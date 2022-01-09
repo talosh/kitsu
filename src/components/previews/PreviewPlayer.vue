@@ -417,7 +417,6 @@ import { annotationMixin } from '@/components/mixins/annotation'
 import { fullScreenMixin } from '@/components/mixins/fullscreen'
 import { domMixin } from '@/components/mixins/dom'
 
-import AnnotationBar from '@/components/pages/playlists/AnnotationBar'
 import ButtonSimple from '@/components/widgets/ButtonSimple'
 import BrowsingBar from '@/components/previews/BrowsingBar'
 import ColorPicker from '@/components/widgets/ColorPicker'
@@ -443,7 +442,7 @@ export default {
     PreviewViewer,
     RevisionPreview,
     // TaskInfo,
-    VideoProgress,
+    VideoProgress
   },
 
   props: {

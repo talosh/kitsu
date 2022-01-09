@@ -64,7 +64,6 @@
     "vue3-datepicker": "^0.2.5",
     "vue3-lazyload": "^0.2.2-beta",
     "vuedraggable": "4.0.3",
-    "vuejs-datepicker": "1.6.2",
     "vuex": "^4.0.0",
     "vuex-router-sync": "6.0.0-rc.1",
     "wavesurfer.js": "5.2.0"

@@ -20,9 +20,6 @@
 </template>
 
 <script>
-import {
-} from 'vue-feather-icons'
-
 import('@google/model-viewer')
 
 export default {

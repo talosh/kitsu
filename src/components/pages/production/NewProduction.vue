@@ -1015,7 +1015,6 @@ span.input-separator {
   cursor: grab;
 }
 
-.task-type.task-type-name {
 :deep(.input.is-small) {
   height: 2rem;
   font-size: 1rem;
@@ -1059,7 +1058,6 @@ span.input-separator {
   min-width: auto;
   border: 0;
 }
-
 
 .import-content {
   display: flex;

@@ -830,7 +830,6 @@ export default {
   mixins: [annotationMixin, domMixin],
 
   components: {
-    AnnotationBar,
     ButtonSimple,
     ColorPicker,
     Combobox,

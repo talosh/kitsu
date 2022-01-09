@@ -16,7 +16,7 @@
       <icon name="check-square" class="icon" v-if="entry.checked" />
       <icon name="square" class="icon" v-else />
     </span>
-    <textarea-autosize
+    <!--textarea-autosize
       type="text"
       class="checklist-text flexrow-item"
       :ref="`checklist-entry-${index}`"
@@ -28,7 +28,7 @@
       @keyup.down.native="focusNext(index)"
       :disabled="disabled"
       v-model="entry.text"
-    />
+    /-->
   </div>
 </div>
 </template>
