@@ -300,6 +300,7 @@
           class="button flexrow-item"
           :href="originalPath"
           :title="$t('playlists.actions.see_original_file')"
+
           target="blank"
           v-if="!readOnly && isPicture"
         >
@@ -880,6 +881,7 @@ export default {
 
     onPlayPauseClicked () {
       this.clearFocus()
+      console.log('play')
       if (!this.isPlaying) {
         this.play()
       } else {

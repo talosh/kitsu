@@ -1,7 +1,6 @@
 <template>
 <div
   class="flexrow production-name"
-  v-tooltip.right="tooltipOptions"
 >
   <router-link
     class="flexrow flexrow-item"

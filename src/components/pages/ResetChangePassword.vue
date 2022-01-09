@@ -31,7 +31,7 @@
               v-model="password2"
             />
             <span class="icon">
-              <icon name="icon" width=20 height=20 />
+              <icon name="lock" width=20 height=20 />
             </span>
           </p>
         </div>

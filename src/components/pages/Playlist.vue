@@ -51,7 +51,7 @@
           key="new-playlist-button"
           v-if="isCurrentUserManager && !isListToggled"
         >
-          <icon name="icon" class="icon is-small" />
+          <icon name="plus" class="icon is-small" />
           {{ $t('playlists.new_playlist') }}
         </button>
 

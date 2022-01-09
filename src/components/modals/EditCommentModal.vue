@@ -22,29 +22,6 @@
         <label class="label">
           {{ $t('comments.text') }}
         </label>
-          <at-ta
-            :members="team"
-            name-key="full_name"
-            limit="2"
-          >
-            <template
-              slot="item"
-              slot-scope="team"
-              v-if="team && team.item"
-            >
-              <div class="flexrow">
-                <people-avatar
-                  class="flexrow-item"
-                  :person="team.item"
-                  :size="20"
-                  :no-cache="true"
-                />
-                <span class="flexrow-item">
-                  {{ team.item.full_name }}
-                </span>
-              </div>
-            </template>
-
             <textarea
               class="input"
               ref="textField"
@@ -54,7 +31,6 @@
               v-focus
             >
             </textarea>
-          </at-ta>
         </div>
         <label class="label">
           {{ $t('comments.checklist') }}
@@ -84,7 +60,7 @@ import { mapGetters } from 'vuex'
 import { modalMixin } from './base_modal'
 import { remove } from '@/lib/models'
 
-import AtTa from 'vue-at/dist/vue-at-textarea'
+// import AtTa from 'vue-at/dist/vue-at-textarea'
 import Checklist from '@/components/widgets/Checklist'
 import ComboBoxStatus from '@/components/widgets/ComboboxStatus.vue'
 import ModalFooter from '@/components/modals/ModalFooter'
@@ -94,11 +70,9 @@ export default {
   name: 'edit-comment-modal',
   mixins: [modalMixin],
   components: {
-    AtTa,
     Checklist,
     ComboBoxStatus,
-    ModalFooter,
-    PeopleAvatar
+    ModalFooter
   },
 
   props: [

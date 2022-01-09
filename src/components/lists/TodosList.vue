@@ -89,6 +89,8 @@
           <td class="name datatable-row-header" :style="{left: colNamePosX}">
             <div class="flexrow">
               <entity-thumbnail
+                :width="60"
+                :height="40"
                 :empty-width="60"
                 :empty-height="40"
                 :entity="{preview_file_id: entry.entity_preview_file_id}"

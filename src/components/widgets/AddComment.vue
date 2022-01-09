@@ -19,37 +19,7 @@
       </div>
     </figure>
     <div class="media-content">
-      <at-ta
-        :members="atOptions"
-        name-key="full_name"
-        :limit="2"
-        @input="onTextChanged"
-      >
-        <template
-          slot="item"
-          slot-scope="team"
-          v-if="team && team.item"
-        >
-
-          <template v-if="team.item.isTime">
-            ⏱️  frame
-          </template>
-          <template v-else>
-            <div class="flexrow">
-              <people-avatar
-                class="flexrow-item"
-                :person="team.item"
-                :size="20"
-                :font-size="11"
-                :no-cache="true"
-              />
-              <span class="flexrow-item">
-                {{ team.item.full_name }}
-              </span>
-            </div>
-          </template>
-        </template>
-        <textarea
+      <textarea
           ref="comment-textarea"
           class="textarea flexrow-item"
           :placeholder="$t('comments.add_comment')"
@@ -58,8 +28,7 @@
           @keyup.enter.ctrl="runAddComment(text, attachment, checklist, task_status_id)"
           @keyup.enter.meta="runAddComment(text, attachment, checklist, task_status_id)"
           v-focus>
-        </textarea>
-      </at-ta>
+      </textarea>
       <checklist
         :checklist="checklist"
         @add-item="onAddChecklistItem"
@@ -156,25 +125,23 @@ import { remove } from '@/lib/models'
 import colors from '@/lib/colors'
 import { replaceTimeWithTimecode } from '@/lib/render'
 
-import AtTa from 'vue-at/dist/vue-at-textarea'
 import AddCommentImageModal from '@/components/modals/AddCommentImageModal'
-import ComboboxStatus from '@/components/widgets/ComboboxStatus'
-import PeopleAvatar from '@/components/widgets/PeopleAvatar'
-import GroupButton from '@/components/widgets/GroupButton'
 import ButtonSimple from '@/components/widgets/ButtonSimple'
 import Checklist from '@/components/widgets/Checklist'
+import ComboboxStatus from '@/components/widgets/ComboboxStatus'
+import GroupButton from '@/components/widgets/GroupButton'
+import PeopleAvatar from '@/components/widgets/PeopleAvatar'
 
 export default {
   name: 'add-comment',
 
   components: {
-    AtTa,
     AddCommentImageModal,
-    ComboboxStatus,
-    PeopleAvatar,
-    GroupButton,
     ButtonSimple,
-    Checklist
+    Checklist,
+    ComboboxStatus,
+    GroupButton,
+    PeopleAvatar
   },
 
   data () {
