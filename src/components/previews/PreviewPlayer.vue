@@ -95,14 +95,14 @@
           class="flexrow-item"
           :title="$t('playlists.actions.play')"
           icon="play"
-          @click="onPlayPauseClicked"
+          @mouseup="onPlayPauseClicked"
           v-if="!isPlaying"
         />
         <button-simple
           class="flexrow-item"
           :title="$t('playlists.actions.pause')"
           icon="pause"
-          @click="onPlayPauseClicked"
+          @mouseup="onPlayPauseClicked"
           v-else
         />
       </div>
@@ -880,7 +880,6 @@ export default {
 
     onPlayPauseClicked () {
       this.clearFocus()
-      console.log('play')
       if (!this.isPlaying) {
         this.play()
       } else {
