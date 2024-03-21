@@ -9,7 +9,7 @@ production** button.
 
 Enter your production name, and choose **TV Show** if you need more than one episode.
 
-Then, you have to fill in technical information, such as the number of FPS, the Ration, and the Resolution.
+Then, you have to fill in technical information, such as the number of FPS, the Ratio, and the Resolution.
 
 ::: tip 
 All these data will be used when Kitsu re-encodes the video previews uploaded.
