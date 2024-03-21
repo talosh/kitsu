@@ -2,17 +2,21 @@
 
 ## Create a Bot Account
 
+
 1. Make sure you're logged on to the [Discord website](https://discord.com/).
 2. Navigate to the [application page](https://discord.com/developers/applications).
+
+![application page](../img/discord/discord_app.png)
+
 3. Click on the "New Application" button.
 4. Give the application a name (for example "Kitsu") and click "Create".
 
 ![Create application](../img/discord/create_application.png)
 
-5. Create a Bot User by navigating to the “Bot” tab and clicking “Add Bot”.
-    - Click “Yes, do it!” to continue.
+5. Create a Bot User by navigating to the “Bot” tab.
 
-![Create bot](../img/discord/create_bot_user.png)
+![Bot Tab](../img/discord/bot_tab.png)
+
 
 6. It's possible to add an icon for the bot by clicking on the icon next to "Username".
 It will be the same icon used when the bot chat.
@@ -37,11 +41,19 @@ So you’ve made a Bot User but it’s not actually in any server.
 
 To add the bot in a server, follow these steps:
 
+::: warning
+ The person adding the bot needs **Manage Server** permissions to do so.
+:::
+
+
 1. Make sure you're logged on to the [Discord website](https://discord.com/).
 2. Navigate to the [application page](https://discord.com/developers/applications).
 3. Click on your bot’s page.
-4. Go to the “OAuth2” tab and after "URL Generator".
-5. In "Scopes", tick only "bot".
+4. Go to the “OAuth2” tab 
+
+![Bot page oauth2](../img/discord/bot_page_oauth2.png)
+
+5. On the "OAuth2 URL Generator" section, on "Scopes", tick only "bot".
 
 ![URL Generator Scopes](../img/discord/url_generator_scopes.png)
 
@@ -51,9 +63,10 @@ To add the bot in a server, follow these steps:
 
 7. Now the resulting URL can be used to add your bot to a server. Copy and paste the URL into your browser, choose a server to invite the bot to, and click “Authorize”.
 
-> **_Note:_** The person adding the bot needs “Manage Server” permissions to do so.
 
-> **_Note:_** The users who wants to have notifications enabled have to be in a same server than the bot.
+::: warning
+ The users who wants to have notifications enabled have to be in a same server than the bot.
+:::
 
 ## Enable Notifications
 
