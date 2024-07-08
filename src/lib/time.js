@@ -289,8 +289,16 @@ export const daysToMinutes = (organisation, days) => {
   return Math.floor(days * nbHoursByDay * 60)
 }
 
+export const hoursToMinutes = (organisation, hours) => {
+  return Math.floor(hours * 60)
+}
+
 export const minutesToDays = (organisation, minutes) => {
   return minutes / 60 / organisation.hours_by_day
+}
+
+export const minutesToHours = (organisation, minutes) => {
+  return minutes / 60
 }
 
 export const hoursToDays = (organisation, hours) => {

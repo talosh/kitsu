@@ -7,7 +7,8 @@ import {
   formatDate,
   formatFullDate,
   formatSimpleDate,
-  minutesToDays
+  minutesToDays,
+  minutesToHours
 } from '@/lib/time'
 
 export const formatListMixin = {
@@ -41,6 +42,19 @@ export const formatListMixin = {
         })
       }
       return days
+    },
+
+    formatDurationHours(minutes, toLocale = true) {
+      if (!minutes) {
+        return 0
+      }
+      const hours = minutesToHours(this.organisation, minutes)
+      if (toLocale) {
+        return hours.toLocaleString('fullwide', {
+          maximumFractionDigits: 2
+        })
+      }
+      return hours
     },
 
     formatPriority(priority) {
